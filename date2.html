@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Date Listening Practice</title>
+<style type="text/css">
+.buttonBasic {
+ border-radius: 5px;
+ cursor: pointer;
+}
+.button1 {
+ border: 2px solid #ee4718;
+ background-color: #eec718;
+ color: #b21e0f;
+ font-weight: bold;
+}
+.button2{
+ border: 2px solid #2345a9;
+ background-color: #d5def8;
+}
+
+</style>
+<script type="text/javascript" src="https://code.responsivevoice.org/responsivevoice.js"></script>
+<script type="text/javascript">
+const jDay = ["月曜日", "火曜日",　"水曜日",　"木曜日",　"金曜日",　"土曜日",　"日曜日"];
+const jDayHiragana = ["げつようび","かようび","すいようび","もくようび", "きんようび","どようび", "にちようび"];
+const eDay = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+const eMonth = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const jMonthHiragana = ["いちがつ", "にがつ", "さんがつ", "しがつ", "ごがつ", "ろくがつ", "しちがつ", "はちがつ", "くがつ", "じゅうがつ", "じゅういちがつ", "じゅうにがつ"];
+const jDateHiragana = ["ついたち","ふつか","みっか","よっか","いつか","むいか","なのか","ようか","ここのか","とおか","じゅういちにち","じゅうににち","じゅうさんにち","じゅうよっか",　
+"じゅうごにち","じゅうろくにち","じゅうしちにち","じゅうはちにち","じゅうくにち","はつか","にじゅういちにち","にじゅうににち","にじゅうさんにち","にじゅうよっか","にじゅうごにち",
+"にじゅうろくにち","にじゅうしちにち","にじゅうはちにち","にじゅうくにち","さんじゅうにち","さんじゅういちにち"];
+var cDay = 1;
+var cMonth = 10;
+var cDate = 30;
+
+function generateNewValue() {
+ document.getElementById("yourResult").innerHTML="";
+ cDay = Math.floor(Math.random()*10)%7;
+ cMonth = Math.floor(Math.random()*100)%12 + 1;
+ var modValue = 31;
+ if (cMonth == 2){
+    modValue = 28;
+ }
+ else if ((cMonth == 4)|| (cMonth == 6) || (cMonth == 9) || (cMonth == 11)) {
+    modValue = 30;
+ }
+ cDate= Math.floor(Math.random()*100)%modValue + 1;
+}
+function readMyVal() {
+  responsiveVoice.speak( cMonth.toString() + "月" + cDate + "日　" + jDay[cDay], "Japanese Female");
+}
+function checkAnswer() {
+ 
+ var myDay = document.getElementById("day").value;
+ var myMonth = document.getElementById("month").value;
+ var myDate = document.getElementById("date").value;
+
+ var bool1 = ((cDay + 1).toString() == myDay);
+ var bool2 = (myMonth == cMonth.toString());
+ var bool3 = (myDate == cDate.toString());
+ var message = "";
+ if (!bool1){
+    message += "day of the week";
+ }
+ if(!bool2){
+    if(!bool1){
+      message += ", ";
+    }
+    message += "month";
+ }
+ if(!bool3) {
+   if(!bool1 || !bool2) {
+     message += ", ";
+   }
+   message += "date";
+ }
+ if (bool1 && bool2 && bool3){
+    message = "<font color='green'>Correct! Great job! Try another date. </font>";
+ }
+ else {
+    message = "<font color='red'>The following value(s) are not correct:" + message + ". Try again.</font>";
+ }
+ document.getElementById("yourResult").innerHTML=message;
+}
+
+function giveup(){
+ var englishDate = eDay[cDay] + ", " + eMonth[cMonth -1] + " " + cDate.toString();
+ var japaneseDate = jMonthHiragana[cMonth - 1] + " " + jDateHiragana[cDate - 1] + " " + jDayHiragana[cDay];
+ document.getElementById("yourResult").innerHTML= "<font color='blue'>The correct date is: " + japaneseDate + " (" +
+     englishDate + ") </font>";
+}
+</script>
+</head>
+<body>
+<center>
+<h2>Date Listening Practice</h2>
+<form>
+<p>Click the play button below and listen to a date in Japanese.</p>
+ <input type="button" value="Play >>" onClick="readMyVal()" class="buttonBasic button2"/>
+<!--
+<a href="javascript:readMyVal()"> <image src="Sound-on-icon.jpg"/></a>
+-->
+<br/>
+<p>What was the date you heard? Please set the right date below. </p>
+<br/>
+
+
+<select id="day">
+ <option value="1">Monday</option>
+ <option value="2">Tuesday</option>
+ <option value="3">Wednesday</option>
+ <option value="4">Thursday</option>
+ <option value="5">Friday</option>
+ <option value="6">Saturday</option>
+ <option value="7">Sunday</option>
+</select>
+<select id="month">
+ <option value="1">January</option>
+ <option value="2">February</option>
+ <option value="3">March</option>
+ <option value="4">April</option>
+ <option value="5">May</option>
+ <option value="6">June</option>
+ <option value="7">July</option>
+ <option value="8">August</option>
+ <option value="9">September</option>
+ <option value="10">October</option>
+ <option value="11">November</option>
+ <option value="12">December</option>
+</select>
+<select id="date">
+ <option value="1">1</option>
+ <option value="2">2</option>
+ <option value="3">3</option>
+ <option value="4">4</option>
+ <option value="5">5</option>
+ <option value="6">6</option>
+ <option value="7">7</option>
+ <option value="8">8</option>
+ <option value="9">9</option>
+ <option value="10">10</option>
+ <option value="11">11</option>
+ <option value="12">12</option>
+ <option value="13">13</option>
+ <option value="14">14</option>
+ <option value="15">15</option>
+ <option value="16">16</option>
+ <option value="17">17</option>
+ <option value="18">18</option>
+ <option value="19">19</option>
+ <option value="20">20</option>
+ <option value="21">21</option>
+ <option value="22">22</option>
+ <option value="23">23</option>
+ <option value="24">24</option>
+ <option value="25">25</option>
+ <option value="26">26</option>
+ <option value="27">27</option>
+ <option value="28">28</option>
+ <option value="29">29</option>
+ <option value="30">30</option>
+ <option value="31">31</option>
+</select>
+<input type="button" value="Give up" onclick="giveup()" class="buttonBasic button1"/>
+<br/>
+<div id="yourResult"></div>
+<br/>
+<input type="button" value="Check your answer" onclick="checkAnswer()" class="buttonBasic button2"/>
+<input type="button" value="Next Date >>" onclick="generateNewValue()" class="buttonBasic button2"/>
+</form>
+<br/><br/><br/>
+copyright&copy;m.nowzari<br/>
+<div style="width:300px;vertical-align:top;font-family: Arial;font-size:9pt;line-height: normal">
+<a rel="license" href="//responsivevoice.org/"><img title="ResponsiveVoice Text To Speech" src="https://responsivevoice.org/wp-content/uploads/2014/08/120x31.png" style="float:left;padding-right:2px" /></a><span xmlns:dct="https://purl.org/dc/terms/" property="dct:title"><a href="//responsivevoice.org/" target="_blank" title="ResponsiveVoice Text To Speech">ResponsiveVoice</a></span> used under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" title="Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License">Non-Commercial License</a></div>
+<div style="clear:both;">&nbsp;</div>
+</center>
+</body>
+</html>

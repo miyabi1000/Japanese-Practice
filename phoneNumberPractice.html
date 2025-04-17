@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>Number Generator</title>
+<style type="text/css">
+.buttonBasic {
+ border-radius: 5px;
+ cursor: pointer;
+}
+.button1 {
+ border: 2px solid #ee4718;
+ background-color: #eec718;
+ color: #b21e0f;
+ font-weight: bold;
+}
+.button2{
+ border: 2px solid #2345a9;
+ background-color: #d5def8;
+}
+</style>
+<script type="text/javascript" src="https://code.responsivevoice.org/responsivevoice.js"></script>
+<script type="text/javascript">
+<!--
+var currentDisplay = "416-235-7890";
+var currentDisplay2 = "4 1 6 の　2　3　5　の　7　8　9　0";
+var currentAnswer = "Yon-Ichi-Roku no Ni-San-Go no Nana-Hachi-Ky&#363;-Zero";
+function getNum(){
+ var firstDigit = Math.floor(10*Math.random())%10;
+ if (firstDigit == 0) {
+    firstDigit = 9;
+ }
+ var nextNine = (Math.floor(1000000000*Math.random())).toString();
+ while (nextNine.length < 9) {
+    nextNine = "0" + nextNine; 
+ }
+currentAnswer = getDigitString(firstDigit, true) + "-";
+currentAnswer += getDigitString(nextNine[0], true) + "-" + getDigitString(nextNine[1], true) + " no ";
+currentAnswer += getDigitString(nextNine[2], true) + "-" + getDigitString(nextNine[3], true) + "-" + getDigitString(nextNine[4], true) + " no ";
+currentAnswer += getDigitString(nextNine[5], true) + "-" + getDigitString(nextNine[6], true) + "-" + getDigitString(nextNine[7], true) + "-" + getDigitString(nextNine[8], true);
+ currentDisplay = firstDigit.toString() + nextNine[0] + nextNine[1] + "-" +
+	nextNine[2] + nextNine[3] + nextNine[4] + "-" + nextNine[5] + nextNine[6] + nextNine[7] + nextNine[8];
+　currentDisplay2 = firstDigit.toString() + " " + nextNine[0] + " " + nextNine[1] + " の　" +
+	nextNine[2] + " " +　nextNine[3] + " " +　nextNine[4] + "　の　" + nextNine[5] +　" " + nextNine[6] + " " +　nextNine[7] + " " +　nextNine[8];
+ return currentDisplay;
+}
+function getDigitString(myDigit, isOne){
+ switch (Number(myDigit)) {
+  case 0:
+    return "Zero";
+  case 1:
+    return "Ichi"; 
+  case 2:
+    return "Ni"; 
+  case 3:
+    return "San"; 
+  case 4:
+    if (isOne) {
+    return "Yon";
+   }
+   else {
+    return "Yon (or Shi)";
+   }
+  case 5:
+    return "Go"; 
+  case 6:
+    return "Roku";
+  case 7:
+    if (isOne) {
+	return "Nana";
+     }
+    else {
+        return "Nana (or Shichi)";
+    }
+  case 8:
+    return "Hachi";
+  case 9:
+    return "Ky&#363;";
+ }
+
+}
+function getDigit(){
+ currentDisplay = (Math.floor(10*Math.random())%10).toString();
+　currentDisplay2 = currentDisplay;
+ currentAnswer = getDigitString(currentDisplay, false);
+ 
+ return currentDisplay;
+}
+
+function writeNext(){
+ document.getElementById('myAnswer').innerHTML= "";
+ document.getElementById('myNumber').innerHTML=getNum();
+}
+
+function writeNext2(){
+ document.getElementById('myAnswer').innerHTML="";
+ document.getElementById('myNumber').innerHTML=getDigit();
+}
+
+function writeAnswer() {
+ document.getElementById('myAnswer').innerHTML="Answer: "+ currentAnswer;
+ listenAnswer();
+}
+
+function listenAnswer() {
+ if (currentDisplay == "0") {
+       responsiveVoice.speak("ゼロ", "Japanese Female"); 
+ }
+ else {
+ 	responsiveVoice.speak(currentDisplay2, "Japanese Female"); 
+ }
+}
+//-->
+</script>
+</head>
+<body bgcolor="black" style="color:#6F9;" vlink="#7FEDE4" alink="#7FEDE4" link="#7FEDE4" onload="writeNext()">
+<h2>Practice Phone Number</h2>
+<form>
+<font style="color:white">How do you read this?</font>
+<input type="button" value="Get the answer" onclick="writeAnswer()" class="buttonBasic button1"/>
+<!-- input type="button" value="Listen" onclick="listenAnswer()" class="buttonBasic button1"/ -->
+<div id="myNumber" style="font-size:40px;font-weight:bold;width:800px;height:100px;background:#2C3539;" ></div>
+<div id="myAnswer" style="color:yellow;font-size:25px;font-weight:bold;width:800px;height:100px;background:#2C3539;" ></div>
+<input type="button" value="Get a next Phone Number" onclick="writeNext()" class="buttonBasic button2"/>
+<input type="button" value="Get a Digit" onclick="writeNext2()" class="buttonBasic button2"/>
+
+</form>
+<br/><br/><br/>
+copyright&copy;m.nowzari<br/>
+<div style="width:300px;vertical-align:top;font-family: Arial;font-size:9pt;line-height: normal">
+<a rel="license" href="//responsivevoice.org/"><img title="ResponsiveVoice Text To Speech" src="https://responsivevoice.org/wp-content/uploads/2014/08/120x31.png" style="float:left;padding-right:2px" /></a><span xmlns:dct="https://purl.org/dc/terms/" property="dct:title"><a href="//responsivevoice.org/" target="_blank" title="ResponsiveVoice Text To Speech">ResponsiveVoice</a></span> used under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" title="Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License">Non-Commercial License</a></div>
+<div style="clear:both;">&nbsp;</div>
+
+</body>
+</html>

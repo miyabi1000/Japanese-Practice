@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>Translation Practice</title>
+<style type="text/css">
+.buttonBasic {
+ border-radius: 5px;
+ cursor: pointer;
+}
+.button1 {
+ border: 2px solid #ee4718;
+ background-color: #eec718;
+ color: #b21e0f;
+ font-weight: bold;
+}
+.button2{
+ border: 2px solid #2345a9;
+ background-color: #d5def8;
+}
+</style>
+<script type="text/javascript" src="https://code.responsivevoice.org/responsivevoice.js"></script>
+<script type="text/javascript">
+<!--
+var currentDisplay = "I didn't go to Japan last year.";
+var currentAnswer = "わたしは　きょねん　にほんに　いきませんでした。";
+var currentJAnswer = "私は去年日本に行きませんでした。";
+var maxNum;
+
+var currentIndex = -1;
+
+var englishM = [
+"I didn't go to Japan last year.",
+"Where did Mr. Suzuki go last month?",
+"Mr. Suzuki went to Yokohama branch office last year.",
+"Where will Mr. Suzuki go next month?",
+"Who will Mr. Suzuki go with to Kyoto next month?",
+"When does Mr. Suzuki go to Tokyo?",
+"Mr. Suzuki and Ms. Takahashi will come to the office (company) next month.",
+"When did Mr. Suzuki go to Japan?",
+"Where does Mr. Suzuki go today?",
+"Mr. Suzuki and Mr. Sasaki will go to Yokohama branch office next week.",
+"When will Mr. Tanaka come to the office (company)?",
+"Mr. Suzuki came to my home yesterday.",
+"Who did Mr. Suzuki go with to Osaka last year?",
+"Mr. Suzuki will not come to my home tomorrow.",
+"I came from China."
+];
+var japM = [
+"わたしは　きょねん　にほんに　いきませんでした。",
+"すずきさんは　せんげつ　どこに　いきましたか。",
+"すずきさんは　きょねん　よこはまししゃに　いきました。",
+"すずきさんは　らいげつ　どこに　いきますか。",
+"すずきさんは　らいげつ　だれと　きょうとに　いきますか。",
+"すずきさんは　いつ　とうきょうに　いきますか。",
+"すずきさんと　たかはしさんは　らいげつ　かいしゃに　きます。",
+"すずきさんは　いつ　にほんに　いきましたか。",
+"すずきさんは　きょう　どこに　いきますか。",
+"すずきさんと　ささきさんは　らいしゅう　よこはまししゃに　いきます。",
+"たなかさんは　いつ　かいしゃに　きますか。",
+"すずきさんは　きのう　わたしのうちに　きました。",
+"すずきさんは　きょねん　だれと　おおさかに　いきましたか。",
+"すずきさんは　あした　わたしのうちに　きません。",
+"わたしは　ちゅうごくから　きました。"
+];
+var japM2 = ["私は去年日本に行きませんでした。",
+"鈴木さんは先月、どこに　行きましたか。",
+"鈴木さんは去年、横浜支社に　行きました。",
+"鈴木さんは来月、どこに　いきますか。",
+"鈴木さんは来月、誰と　京都に　行きますか。",
+"鈴木さんはいつ東京に　行きますか。",
+"鈴木さんと高橋さんは来月、会社に　きます。",
+"鈴木さんはいつ日本に行きましたか。",
+"鈴木さんは今日、どこに　行きますか。",
+"鈴木さんと佐々木さんは来週、横浜支社に　行きます。",
+"田中さんは、いつ会社に来ますか。",
+"鈴木さんは昨日、私のうちに来ました。",
+"鈴木さんは去年、誰と大阪に行きましたか。",
+"私の友達は来週、中国に帰ります。",
+"鈴木さんは明日、私のうちに来ません。",
+"私は中国から来ました。"
+]
+
+
+function getMaxNum() {
+  if(maxNum == null) {
+     maxNum = englishM.length;
+  }
+  return maxNum;
+}
+
+function getNext(){
+   //currentIndex = Math.floor(100*Math.random())%getMaxNum();
+   currentIndex = (currentIndex + 1)%getMaxNum();
+   currentDisplay = englishM[currentIndex];
+   currentAnswer = japM[currentIndex];
+   currentJAnswer = japM2[currentIndex];
+   return currentIndex;
+ }
+
+function writeNext(){
+ getNext();
+ document.getElementById('myAnswer').innerHTML= "";
+ document.getElementById('myVocablary').innerHTML=currentDisplay;
+}
+
+
+function writeAnswer() {
+ document.getElementById('myAnswer').innerHTML="Answer: "+ currentAnswer;
+ listenAnswer();
+}
+function listenAnswer() {
+ responsiveVoice.speak(japM2[currentIndex], "Japanese Female"); 
+}
+//-->
+</script>
+</head>
+<body bgcolor="black" style="color:#6F9;" vlink="#7FEDE4" alink="#7FEDE4" link="#7FEDE4" onload="writeNext()">
+<h2>Lesson 6 Translation Practice</h2>
+<form>
+<font style="color:white">How do you say in Japanese?</font>
+<input type="button" value="Get the answer" onclick="writeAnswer()" class="buttonBasic button1"/>
+<br/><br/>
+<div id="myVocablary" style="color:#66ccff;font-size:25px;font-weight:bold;width:800px;height:90px;background:#2C3539;" ></div>
+<div id="myAnswer" style="color:yellow;font-size:20px;font-weight:bold;width:800px;height:90px;background:#2C3539;" ></div>
+<input type="button" value="Get a next question" onclick="writeNext()" class="buttonBasic button2"/>
+
+
+</form>
+<br/><br/><br/>
+copyright&copy;m.nowzari<br/>
+<div style="width:300px;vertical-align:top;font-family: Arial;font-size:9pt;line-height: normal">
+<a rel="license" href="//responsivevoice.org/"><img title="ResponsiveVoice Text To Speech" src="https://responsivevoice.org/wp-content/uploads/2014/08/120x31.png" style="float:left;padding-right:2px" /></a><span xmlns:dct="https://purl.org/dc/terms/" property="dct:title"><a href="//responsivevoice.org/" target="_blank" title="ResponsiveVoice Text To Speech">ResponsiveVoice</a></span> used under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" title="Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License">Non-Commercial License</a></div>
+<div style="clear:both;">&nbsp;</div>
+
+</body>
+</html>

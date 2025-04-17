@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Number Listening Practice</title>
+<style type="text/css">
+.buttonBasic {
+ border-radius: 5px;
+ cursor: pointer;
+}
+.button1 {
+ border: 2px solid #ee4718;
+ background-color: #eec718;
+ color: #b21e0f;
+ font-weight: bold;
+}
+.button2{
+ border: 2px solid #2345a9;
+ background-color: #d5def8;
+}
+</style>
+<script type="text/javascript" src="https://code.responsivevoice.org/responsivevoice.js"></script>
+<script type="text/javascript">
+var currentValue = '1253';
+
+function readMyVal(){
+ readMyValue(currentValue);
+}
+function readMyValue(myValue) {
+ responsiveVoice.speak(myValue, "Japanese Female");
+}
+function generateNewValue(){
+ document.getElementById("myGuess").value="";
+ document.getElementById("yourResult").innerHTML="";
+ currentValue = Math.floor(Math.random()*1000000).toString();
+}
+function goNext() {
+   generateNewValue();
+}
+function checkAnswer(){
+    var bool = false;
+    var myObj = document.getElementById("myGuess").value.trim();
+    if(myObj == currentValue){
+       bool = true;
+    }
+    document.getElementById("yourResult").innerHTML=(bool?"<font color='green'>Correct! You did a great job. Try next number.</font> ":"<font color='red'>Not quite. Try again!</font>");
+}
+function giveUp(){
+ document.getElementById("yourResult").innerHTML="<font color='blue'>The correct answer is " + currentValue + ". Try a new number!</font>"; 
+}
+</script>
+</head>
+<body onLoad="generateNewValue()">
+<center>
+<h2>Number Listening Practice</h2>
+<form>
+<p>Listen to the number by clicking the play button below. <br/>
+Then type the number you heard in the textbox.</p>
+<input type="button" value="Play >>" onClick="readMyVal()" class="buttonBasic button2"/>
+<br/>
+<br/>
+What number did you hear?<input type="text" id="myGuess" size="12"/><input type="button" class="button1 buttonBasic" value="Give Up" onClick="javascript:giveUp();"/>
+<br/>
+<div id="yourResult"></div>
+<br/>
+<br/>
+<input type="button" class="buttonBasic button2" value="Check Your Answer" onClick="javascript:checkAnswer();"/>
+<input type="button" class="buttonBasic button2" value="Next Number >>" onClick="javascript:goNext();"/>
+</form>
+<br/>
+<br/>
+<br/>
+copyright&copy;m.nowzari<br/>
+<div style="width:300px;vertical-align:top;font-family: Arial;font-size:9pt;line-height: normal">
+<a rel="license" href="//responsivevoice.org/"><img title="ResponsiveVoice Text To Speech" src="https://responsivevoice.org/wp-content/uploads/2014/08/120x31.png" style="float:left;padding-right:2px" /></a><span xmlns:dct="https://purl.org/dc/terms/" property="dct:title"><a href="//responsivevoice.org/" target="_blank" title="ResponsiveVoice Text To Speech">ResponsiveVoice</a></span> used under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" title="Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License">Non-Commercial License</a></div>
+<div style="clear:both;">&nbsp;</div>
+</center>
+</body>
+</html>
