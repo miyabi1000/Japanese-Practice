@@ -92,7 +92,7 @@ function giveup(){
  var englishTime = cHour.toString() + ":" + ((cMinute < 10)?"0": "") + cMinute.toString() + " " + ((cAmpm==0)?"A.M.":"P.M.");
  var japaneseTime = ((cAmpm == 0)?"ごぜん　":"ごご ") +jHour[cHour - 1] + "  " + ((cMinute == 0)?"":jMinute[cMinute -1]);
  document.getElementById("yourResult").innerHTML= "<p style="color: 'blue';font-family: 'UD Digi Kyokasho NK-R', sans-serif;">The correct time is: " + japaneseTime + " (" +
-     englishTime + ") </font>";
+     englishTime + ") </p>";
 }
 -->
 </script>
